@@ -6,73 +6,24 @@
     <title>CTEP - CBT Training Environment and Practice</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="icon" type="image/png" href="{{asset('images/logo.png')}}">
     <style>
-        /* --- Custom CSS for CTEP Branding --- */
-        :root {
-            /* User-defined Colors */
-            --ctep-white: #FFFFFF;
-            --ctep-dark-blue: #2A5783; /* Primary / Outline */
-            --ctep-light-blue: #B3E5FC; /* Accent / Glow */
-            --ctep-dark-gray: #333333; /* Text */
-            --ctep-orange: #FF9800; /* Secondary Accent */
-
-            /* Bootstrap Overrides (using Custom Colors) */
-            --bs-primary: var(--ctep-dark-blue);
-            --bs-secondary: var(--ctep-orange);
-            --bs-body-color: var(--ctep-dark-gray);
-            --bs-body-bg: var(--ctep-white);
+        .nav-link {
+            color: var(--ctep-dark-blue) !important;
+            font-weight: 600;
+            font-size: 1.12rem;
+            transition: color 0.7s;
         }
-
-        body {
-            color: var(--bs-body-color);
-            background-color: var(--bs-body-bg);
-        }
-        
-       
-        .navbar-brand, .nav-link { font-weight: 800; color: var(--ctep-dark-blue); }
-
         .nav-link:hover {
-            color: var(--ctep-orange);
+            color: var(--ctep-orange) !important;
         }
-        /* Hero and Backgrounds */
-        .hero-section {
-             /* Light Blue Accent Background */
-            padding: 60px 0;
-            text-align: center;
-        }
-        
-        /* Card Styling */
-        .feature-card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Specific coloring for the two modes */
-        .mode-lan { border-top: 5px solid var(--ctep-dark-blue); }
-        .mode-standalone { border-top: 5px solid var(--ctep-orange); }
-
-        /* Footer */
-        .footer {
+        footer {
             background-color: var(--ctep-dark-blue);
-            color: var(--ctep-white);
-            padding: 20px 0;
-        }
-
-        /* Customizing primary button outline for consistency */
-        .btn-outline-secondary {
-            --bs-btn-color: var(--ctep-dark-gray);
-            --bs-btn-border-color: var(--ctep-dark-gray);
-            --bs-btn-hover-bg: var(--ctep-light-blue);
-            --bs-btn-hover-border-color: var(--ctep-dark-blue);
-        }
-
-        .navbar-toggler-icon {
-            /* This SVG data URI sets the stroke (the lines) to Dark Blue (#2A5783) */
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%232A5783' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            color: white;
+            padding: 15px 0;
         }
     </style>
 </head>
@@ -85,6 +36,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#features">
@@ -98,13 +50,13 @@
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <a class="nav-link" href="{{route('register')}}">
                             <i class="bi bi-person-plus me-1"></i> Register
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <a class="nav-link" href="{{route('login')}}">
                             <i class="bi bi-box-arrow-in-right me-1"></i> Login
                         </a>
                     </li>
@@ -122,7 +74,7 @@
                 <div class="col-lg-6 order-lg-1 text-start">
                     <h1 class="display-4 fw-bold mb-3" style="color: var(--ctep-dark-blue);">Master Your CBT Exam, Online & Offline.</h1>
                     <p class="lead mb-4">The Complete CBT Training Environment (CTEP) provides schools, centers, and individuals with the tools to create, manage, and take practice exams anywhere.</p>
-                    <a href="#" class="btn btn-primary btn-lg me-3" style="background-color: var(--ctep-orange);">Start Registration</a> 
+                    <a href="{{route('register')}}" class="btn btn-primary btn-lg me-3">Start Registration</a> 
                     <a href="#features" class="btn btn-outline-secondary btn-lg">Learn More</a>
                 </div>
             </div>
@@ -224,6 +176,81 @@
                 </div>
             </div>
         </section>
+        <section id="support" class="py-5" style="background-color: var(--ctep-light-blue); border-top: 5px solid var(--ctep-orange);">
+    <div class="container">
+        <h2 class="text-center mb-4 fw-bold" style="color: var(--ctep-dark-blue);">💖 Support Our Mission. Keep CBT Training Free.</h2>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center mb-5">
+                <p class="lead" style="color: var(--ctep-dark-gray);">
+                    CTEP is 100% free for all students, schools, and organizations. Your financial support helps us cover server costs, database maintenance, and continuous feature development.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row text-center">
+            
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3 feature-card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--ctep-dark-blue);"><i class="bi bi-wallet2 me-2"></i> One-Time Contribution</h4>
+                        <p class="card-text">Make a secure, one-time donation to support our immediate server and development costs.</p>
+                        <a href="#" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#donateModal">Donate Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3 feature-card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--ctep-orange);"><i class="bi bi-person-heart me-2"></i> Sponsor a School</h4>
+                        <p class="card-text">Provide funding specifically for technical assistance and outreach to underserved ICT centers.</p>
+                        <a href="#" class="btn btn-secondary mt-3">Become a Sponsor</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3 feature-card">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: var(--ctep-dark-gray);"><i class="bi bi-share me-2"></i> Spread the Word</h4>
+                        <p class="card-text">No financial obligation! Help us grow by sharing CTEP with your colleagues and community.</p>
+                        <a href="URL_TO_SHARE_PAGE" class="btn btn-outline-secondary mt-3">Share CTEP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="donateModalLabel" style="color: var(--ctep-dark-blue);">Make a Contribution</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Thank you for supporting free education! Please choose your contribution level:</p>
+                        <form>
+                            <div class="mb-3">
+                                <label for="donationAmount" class="form-label">Contribution Amount</label>
+                                <select class="form-select" id="donationAmount">
+                                    <option selected>Choose an option...</option>
+                                    <option value="5">$5 (Covers 1 hour of server costs)</option>
+                                    <option value="10">$10 (Covers database backup)</option>
+                                    <option value="25">$25 (Supports a development sprint)</option>
+                                    <option value="custom">Custom Amount</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Name on Card">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Proceed to Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">

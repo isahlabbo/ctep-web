@@ -1,0 +1,143 @@
+/* --- 1. CORE VARIABLES & TEXT --- */
+:root {
+    /* User-defined Color Palette */
+    --ctep-dark-blue: #2A5783;
+    --ctep-light-blue: #B3E5FC;
+    --ctep-dark-gray: #333333;
+    --ctep-orange: #FF9800;
+    --ctep-white: #FFFFFF;
+
+    /* Mapping to Bootstrap Theme Colors */
+    --bs-primary: var(--ctep-dark-blue);
+    --bs-secondary: var(--ctep-orange);
+    --bs-info: var(--ctep-light-blue); /* Used for light backgrounds/accents */
+    
+    /* Text and Background */
+    --bs-body-color: var(--ctep-dark-gray);
+    --bs-body-bg: var(--ctep-white);
+    
+    /* Focus Ring Fix (Crucial for accessibility and forms) */
+    /* Uses the Light Blue accent color for input/button focus glow */
+    --bs-focus-ring-color: rgba(179, 229, 252, 0.7); /* B3E5FC with opacity */
+}
+
+body {
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+}
+
+/* Ensure links use the primary color */
+a {
+    color: var(--bs-primary);
+}
+a:hover {
+    color: var(--ctep-dark-blue);
+    opacity: 0.8;
+}
+
+/* --- 2. BUTTONS (.btn) --- */
+
+/* Primary Button (Dark Blue) */
+.btn-primary {
+    --bs-btn-color: var(--ctep-white);
+    --bs-btn-bg: var(--ctep-dark-blue);
+    --bs-btn-border-color: var(--ctep-dark-blue);
+    --bs-btn-hover-bg: #214365; /* Slightly darker shade for hover */
+    --bs-btn-hover-border-color: #214365;
+    --bs-btn-active-bg: #1A344E;
+}
+
+/* Secondary Button (Orange) */
+.btn-secondary {
+    --bs-btn-color: var(--ctep-white);
+    --bs-btn-bg: var(--ctep-orange);
+    --bs-btn-border-color: var(--ctep-orange);
+    --bs-btn-hover-bg: #E68A00; /* Slightly darker shade for hover */
+    --bs-btn-hover-border-color: #E68A00;
+    --bs-btn-active-bg: #CC7A00;
+}
+
+/* Outline Buttons (Uses Dark Blue outline) */
+.btn-outline-primary {
+    --bs-btn-color: var(--ctep-dark-blue);
+    --bs-btn-border-color: var(--ctep-dark-blue);
+    --bs-btn-hover-color: var(--ctep-white);
+    --bs-btn-hover-bg: var(--ctep-dark-blue);
+    --bs-btn-hover-border-color: var(--ctep-dark-blue);
+}
+
+/* --- 3. FORMS & INPUTS --- */
+
+/* Input Focus Ring (Overrides default blue with Light Blue accent) */
+.form-control:focus, .form-select:focus, .form-check-input:focus {
+    border-color: var(--ctep-light-blue);
+    box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
+}
+
+/* Custom Checkboxes and Radios (Dark Blue color for checked state) */
+.form-check-input:checked {
+    background-color: var(--ctep-dark-blue);
+    border-color: var(--ctep-dark-blue);
+}
+.form-check-input:checked[type=checkbox] {
+    /* Ensures the checkmark is visible */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+}
+/* File input text color */
+.form-file-input {
+    color: var(--ctep-dark-gray);
+}
+
+
+/* --- 4. CARDS & BACKGROUNDS --- */
+
+/* Default Card Style (subtle lift) */
+.card {
+    border-color: var(--ctep-light-blue);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Card Headers/Footers */
+.card-header, .card-footer {
+    background-color: var(--ctep-light-blue);
+    border-color: var(--ctep-light-blue);
+    color: var(--ctep-dark-blue);
+    font-weight: 600;
+}
+
+
+/* --- 5. TABLES (.table) --- */
+
+/* Table Hover and Striped Rows */
+.table-hover > tbody > tr:hover {
+    --bs-table-bg-hover: var(--ctep-light-blue); /* Light Blue for hover */
+    color: var(--ctep-dark-gray);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    --bs-table-accent-bg: #F0F8FF; /* Very faint off-white/blue for stripes */
+}
+
+/* Table Headers (Using Dark Blue for a professional look) */
+.table-primary, .table-dark {
+    --bs-table-bg: var(--ctep-dark-blue);
+    --bs-table-color: var(--ctep-white);
+    --bs-table-border-color: #214365;
+}
+
+
+/* --- 6. ALERTS & BADGES --- */
+
+/* Primary Alert/Badge (Dark Blue) */
+.alert-primary, .badge-primary {
+    --bs-alert-bg: #E0EBF5; /* Very light blue for background */
+    --bs-alert-border-color: var(--ctep-dark-blue);
+    --bs-alert-color: var(--ctep-dark-blue);
+}
+
+/* Secondary Alert/Badge (Orange) */
+.alert-secondary, .badge-secondary {
+    --bs-alert-bg: #FFF3E0; /* Very light orange for background */
+    --bs-alert-border-color: var(--ctep-orange);
+    --bs-alert-color: var(--ctep-orange);
+}
