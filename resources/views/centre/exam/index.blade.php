@@ -26,7 +26,7 @@
                 <td>{{$exam->start_at}}</td>
                 <td>{{$exam->end_at}}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-info">Exam Sessions</a>
+                    <a href="{{route('centre.exam.session.index',[$exam->id])}}" class="btn btn-sm btn-info">Exam Sessions</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>

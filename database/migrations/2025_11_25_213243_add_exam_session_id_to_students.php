@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('exams', function (Blueprint $table) {
-            ;
+        Schema::table('students', function (Blueprint $table) {
+            $table->foreignId('exam_session_id');
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('exams', function (Blueprint $table) {
+        Schema::table('students', function (Blueprint $table) {
             //
         });
     }

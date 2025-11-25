@@ -31,6 +31,14 @@ Route::middleware([])->group(function () {
         ->group(function () {
             Route::get('/{centreId}', [App\Http\Controllers\ExamController::class, 'index'])->name('index');
             Route::post('/{centreId}/register', [App\Http\Controllers\ExamController::class, 'register'])->name('register');
+            
+            // centres exam routes
+            Route::name('session.')
+            ->prefix('session/')
+            ->group(function () {
+                Route::get('/{examId}', [App\Http\Controllers\ExamSessionController::class, 'index'])->name('index');
+                Route::post('/{examId}/register', [App\Http\Controllers\ExamSessionController::class, 'register'])->name('register');
+            });
         });
     });
 });

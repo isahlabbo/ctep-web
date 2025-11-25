@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->id();
+        Schema::table('questions', function (Blueprint $table) {
             $table->foreignId('exam_session_id');
-            $table->string('name');
-            $table->string('passcode')->unique();
-            $table->timestamps();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::table('questions', function (Blueprint $table) {
+            //
+        });
     }
 };
