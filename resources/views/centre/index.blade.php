@@ -25,7 +25,7 @@
                 <td>{{$centre->contact_phone}}</td>
                 <td>{{count($centre->exams)}}</td>
                 <td>
-                    <a href="#" class="btn btn-sm btn-info">View</a>
+                    <a href="{{route('centre.exam.index',[$centre->id])}}" class="btn btn-sm btn-info">View Exams</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>

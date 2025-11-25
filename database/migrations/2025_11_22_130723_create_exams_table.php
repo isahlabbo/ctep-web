@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('start_at');
             $table->string('end_at');
             $table->string('capacity');
+            $table->string('title');
             $table->timestamps();
         });
     }
