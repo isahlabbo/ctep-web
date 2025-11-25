@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExamType extends BaseModel
 {
-    //
+    public function examTypeSubjects() {
+        return $this->hasMany(ExamTypeSubject::class);
+    }
 }

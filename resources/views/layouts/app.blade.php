@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="icon" type="image/png" href="{{asset('images/logo.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('images/logo.png')}}" style="border-radius: 50%;">
     <style>
         .nav-link {
             color: var(--ctep-dark-blue) !important;
@@ -39,36 +39,33 @@
                 
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">
-                            <i class="bi bi-lightbulb me-1"></i> Exam Bodies
+                        <a class="nav-link" href="{{route('centre.index',[Auth::user()->profile_id])}}">
+                            <i class="bi bi-buildings me-1"></i> My Centres
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#features">
-                            <i class="bi bi-lightbulb me-1"></i> My Exams
+                        <a class="nav-link" href="#my-exams-link">
+                            <i class="bi bi-journal-check me-1"></i> My Exams
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#modes">
-                            <i class="bi bi-motherboard me-1"></i> Subjects
+                        <a class="nav-link" href="#subjects-link">
+                            <i class="bi bi-book me-1"></i> Subjects
                         </a>
                     </li>
-                    
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">
-                            <i class="bi bi-person-plus me-1"></i> Exam Sessions
+                        <a class="nav-link" href="#exam-sessions-link">
+                            <i class="bi bi-calendar-event me-1"></i> Exam Sessions
                         </a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('register')}}">
-                            <i class="bi bi-person-plus me-1"></i> Questions
+                        <a class="nav-link" href="#questions-link">
+                            <i class="bi bi-patch-question me-1"></i> Questions
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="bi bi-box-arrow-in-left me-1"></i> Logout
+                            <i class="bi bi-box-arrow-right me-1"></i> Logout
                         </a>
                     </li>
                     <form action="{{route('logout')}}" method="post" id="logout-form">@csrf</form>
@@ -78,14 +75,19 @@
     </nav>
 
     <main>
-        <section id="welcome" class="container">
+        <section id="welcome" class="container pt-4">
             @yield('content')
         </section>
 
 
     </mail>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script
+        src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+        crossorigin="anonymous">
+    </script>
+    <script src="{{asset('js/Ajax/address.js')}}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const userRoleSelect = document.getElementById('userRole');

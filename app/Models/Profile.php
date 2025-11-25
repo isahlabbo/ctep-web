@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profile extends BaseModel
 {
-    //
+    public function centres() {
+        return $this->hasMany(Centre::class);
+    }
+    
 }

@@ -141,3 +141,62 @@ a:hover {
     --bs-alert-border-color: var(--ctep-orange);
     --bs-alert-color: var(--ctep-orange);
 }
+
+/* Ensure links use the primary color */
+a {
+    color: var(--bs-primary);
+}
+a:hover {
+    color: var(--ctep-dark-blue);
+    opacity: 0.8;
+}
+
+/* Headings and Titles - make them dark blue or gray for professionalism */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: var(--ctep-dark-blue);
+}
+
+/* --- 2. FORM & INPUT MODIFICATION --- */
+
+/* Input Focus Ring (Overrides default blue with Light Blue accent) */
+.form-control:focus, .form-select:focus, .form-check-input:focus, .form-control-file:focus {
+    /* Set border color to Light Blue on focus */
+    border-color: var(--ctep-light-blue);
+    /* Set the glow/shadow color using the focus ring variable defined above */
+    box-shadow: 0 0 0 0.25rem var(--bs-focus-ring-color);
+}
+
+/* Standard Input Appearance */
+.form-control {
+    border-color: #ddd; /* Use a very light gray border by default */
+    color: var(--ctep-dark-gray);
+}
+
+/* Custom Checkboxes and Radios (Dark Blue color for checked state) */
+.form-check-input:checked {
+    background-color: var(--ctep-dark-blue);
+    border-color: var(--ctep-dark-blue);
+}
+
+/* --- 3. BACKGROUND UTILITIES MODIFICATION --- */
+
+/* Overriding Bootstrap's default background colors to match your theme */
+
+.bg-primary {
+    background-color: var(--ctep-dark-blue) !important;
+}
+
+.bg-secondary {
+    background-color: var(--ctep-orange) !important;
+}
+
+.bg-info {
+    background-color: var(--ctep-light-blue) !important;
+}
+
+/* Example: Setting the hero/light accent sections */
+.bg-light {
+    background-color: var(--ctep-light-blue) !important; 
+    /* Or use a very light shade if you want the light-blue to be reserved for accents */
+    /* background-color: #F8F9FA !important; */ 
+}
