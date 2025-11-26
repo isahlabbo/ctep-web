@@ -38,6 +38,16 @@ Route::middleware([])->group(function () {
             ->group(function () {
                 Route::get('/{examId}', [App\Http\Controllers\ExamSessionController::class, 'index'])->name('index');
                 Route::post('/{examId}/register', [App\Http\Controllers\ExamSessionController::class, 'register'])->name('register');
+                // centres exam question routes
+                Route::name('question.')
+                ->prefix('question/')
+                ->group(function () {
+                    Route::get('/{examSessionId}', [App\Http\Controllers\SessionQuestionController::class, 'index'])->name('index');
+                    Route::post('/{examSessionId}/register', [App\Http\Controllers\SessionQuestionController::class, 'register'])->name('register');  
+                    Route::post('/{questionId}/update', [App\Http\Controllers\SessionQuestionController::class, 'update'])->name('update'); 
+                    Route::get('/{questionId}/delete', [App\Http\Controllers\SessionQuestionController::class, 'delete'])->name('delete'); 
+
+                });
             });
         });
     });

@@ -28,7 +28,7 @@
                 <td>{{count($examSession->questions)}}</td>
                 <td>{{$examSession->duration()}}</td>
                 <td>
-                    <a href="" class="btn btn-sm btn-info">Students</a>
+                    <a href="{{route('centre.exam.session.question.index', [$examSession->id])}}" class="btn btn-sm btn-info">Students</a>
                     <a href="" class="btn btn-sm btn-info">Questions</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
