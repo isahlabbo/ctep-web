@@ -13,7 +13,31 @@
                 </div>
             </a>
         </div>
+        @elseif(Auth::user()->profile_id == 2)
+        <div class="col-md-3 mb-4">
+            <a href="{{route('school.index',[Auth::user()->profile_id])}}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <i class="bi bi-buildings" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                        <h5 class="card-title" style="color: var(--ctep-dark-blue);">My Schools</h5>   
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        @elseif(Auth::user()->profile_id == 3)
+        <div class="col-md-3 mb-4">
+            <a href="{{route('organization.index',[Auth::user()->profile_id])}}" class="text-decoration-none text-dark">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <i class="bi bi-buildings" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                        <h5 class="card-title" style="color: var(--ctep-dark-blue);">My Organization</h5>   
+                    </div>
+                </div>
+            </a>
+        </div>
         @endif
+
         <div class="col-md-3 mb-4">
             <a href="#" class="text-decoration-none text-dark">
                 <div class="card shadow-sm h-100">

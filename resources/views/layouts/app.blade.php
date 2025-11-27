@@ -38,11 +38,30 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 
                 <ul class="navbar-nav ms-auto">
+                    @if(Auth::user()->profile_id == 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('centre.index',[Auth::user()->profile_id])}}">
                             <i class="bi bi-buildings me-1"></i> My Centres
                         </a>
                     </li>
+                    @endif
+
+                    @if(Auth::user()->profile_id == 2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('school.index',[Auth::user()->profile_id])}}">
+                            <i class="bi bi-buildings me-1"></i> My Schools
+                        </a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->profile_id == 3)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('organization.index',[Auth::user()->profile_id])}}">
+                            <i class="bi bi-buildings me-1"></i> My Organization
+                        </a>
+                    </li>
+                    @endif
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#my-exams-link">
                             <i class="bi bi-journal-check me-1"></i> My Exams

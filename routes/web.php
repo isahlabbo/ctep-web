@@ -18,6 +18,23 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware([])->group(function () {
+    
+    Route::name('school.')
+    ->prefix('school/')
+    ->group(function () {
+        Route::get('/{profileId}', [App\Http\Controllers\SchoolController::class, 'index'])->name('index');
+        Route::get('/{profileId}/create', [App\Http\Controllers\SchoolController::class, 'create'])->name('create');
+        Route::post('/{profileId}/register', [App\Http\Controllers\SchoolController::class, 'register'])->name('register');
+    });
+
+    Route::name('organization.')
+    ->prefix('organization/')
+    ->group(function () {
+        Route::get('/{profileId}', [App\Http\Controllers\OrganizationController::class, 'index'])->name('index');
+        Route::get('/{profileId}/create', [App\Http\Controllers\OrganizationController::class, 'create'])->name('create');
+        Route::post('/{profileId}/register', [App\Http\Controllers\OrganizationController::class, 'register'])->name('register');
+    });
+
     Route::name('centre.')
     ->prefix('centre/')
     ->group(function () {

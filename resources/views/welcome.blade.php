@@ -31,7 +31,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: var(--ctep-white);">
         <div class="container">
-            <a class="navbar-brand" href="#welcome"><img src="{{asset('images/logo.png')}}" width="80"></a><span style="font-weight: 800; color: var(--ctep-dark-blue);">CBT Training Environment & Practice</span>
+            <a class="navbar-brand" href="#welcome"><img src="{{asset('images/logo.png')}}" width="80"></a><span style="font-weight: 800; color: var(--ctep-dark-blue); transform: scaleY(2.5);">CBT Training Environment & Practice</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,6 +41,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#features">
                             <i class="bi bi-lightbulb me-1"></i> Features
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#supports">
+                            <i class="bi bi-lightbulb me-1"></i> Support
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clients">
+                            <i class="bi bi-lightbulb me-1"></i> Clients
                         </a>
                     </li>
                     <li class="nav-item">
@@ -73,13 +83,12 @@
                 </div>
                 <div class="col-lg-6 order-lg-1 text-start">
                     <h1 class="display-4 fw-bold mb-3" style="color: var(--ctep-dark-blue);">Master Your CBT Exam, Online & Offline.</h1>
-                    <p class="lead mb-4">The Complete CBT Training Environment (CTEP) provides schools, centers, and individuals with the tools to create, manage, and take practice exams anywhere.</p>
+                    <p class="lead mb-4">The Complete CBT Training Environment (CTEP) provides schools, centers, and individuals with the tools to create, manage, and take real or practice exams anywhere.</p>
                     <a href="{{route('register')}}" class="btn btn-primary btn-lg me-3">Start Registration</a> 
                     <a href="#features" class="btn btn-outline-secondary btn-lg">Learn More</a>
                 </div>
             </div>
         </section>
-
 
         <section id="features" class="py-5">
             <div class="container">
@@ -176,7 +185,80 @@
                 </div>
             </div>
         </section>
-        <section id="support" class="py-5" style="background-color: var(--ctep-light-blue); border-top: 5px solid var(--ctep-orange);">
+        <section id="clients">
+            <div class="container m-4">
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-buildings" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">ICT Centres</h5>  
+                                <h2>{{count(App\Models\Centre::all())}}</h2> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-buildings" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Secondary Schools</h5>
+                                <h2>{{count(App\Models\School::all())}}</h2>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-buildings" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Cafes</h5>
+                                <h2>{{count(App\Models\School::all())}}</h2>   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-journal-check" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Exams</h5>
+                                <h2>{{count(App\Models\Exam::all())}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-book" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Subjects</h5>
+                                <h2>{{count(App\Models\Subject::all())}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-patch-question" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Questions</h5>
+                                <h2>{{count(App\Models\Question::all())}}</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <i class="bi bi-folder2-open" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
+                                <h5 class="card-title" style="color: var(--ctep-dark-blue);">Students</h5>
+                                <h2>{{count(App\Models\Student::all())}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="supports" class="py-5" style="background-color: var(--ctep-light-blue); border-top: 5px solid var(--ctep-orange);">
     <div class="container">
         <h2 class="text-center mb-4 fw-bold" style="color: var(--ctep-dark-blue);">💖 Support Our Mission. Keep CBT Training Free.</h2>
         
@@ -259,64 +341,7 @@
         </div>
     </footer>
 
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel" style="color: var(--ctep-dark-blue);">Login or Register</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="text text-center"><img src="{{asset('images/logo.png')}}" alt=""></div>
-                    <form>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel" style="color: var(--ctep-dark-blue);">Login or Register</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="userRole" class="form-label">I am a:</label>
-                            <select class="form-select" id="userRole">
-                                <option value="individual">Individual / Student</option>
-                                <option value="parent">Parent</option>
-                                <option value="school">School / Center Administrator</option>
-                                <option value="ict_center">ICT Center</option>
-                                <option value="community">Community Organization</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>

@@ -1,31 +1,24 @@
 @extends('layouts.app')
-@section('title','centre registration')
+@section('title','school registration')
 @section('content')
-<form method="POST" action="{{ route('centre.register',[Auth::user()->profile_id]) }}">
+<form method="POST" action="{{ route('school.register',[Auth::user()->profile_id]) }}">
     @csrf
 
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary">
-            <h4 class="mb-0" style="color: white;">Centre Details</h4>
+            <h4 class="mb-0" style="color: white;">School Details</h4>
         </div>
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label fw-bold">Centre Name <span class="text-danger">*</span></label>
+                    <label for="name" class="form-label fw-bold">School Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="Centre-name" autofocus>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <div class="col-md-6 mb-3">
-                    <label for="registration_number" class="form-label fw-bold">CAC Registration Number <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('registration_number') is-invalid @enderror" id="registration_number" name="registration_number" value="{{ old('registration_number') }}" required autocomplete="off">
-                    @error('registration_number')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
             </div>
 
             <div class="row">
@@ -41,12 +34,21 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <div class="col-md-4 mb-3">
                     <label for="lga" class="form-label fw-bold">LGA  <span class="text-danger">*</span></label>
                     <select class="form-select @error('lga') is-invalid @enderror" id="lga" name="lga" required>
                         <option value="">Select LGA</option>
                     </select>
                     @error('lga')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label for="address" class="form-label">Physical Address</label>
+                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" autocomplete="street-address">
+                    @error('address')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -60,24 +62,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label for="address" class="form-label">Physical Address</label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" autocomplete="street-address">
-                    @error('address')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
                 
                 <div class="col-md-4 mb-3">
-                    <label for="capacity" class="form-label fw-bold">Maximum Centre Capacity (Seats) <span class="text-danger">*</span></label>
+                    <label for="capacity" class="form-label fw-bold">Number of Computers in School <span class="text-danger">*</span></label>
                     <input type="number" class="form-control @error('capacity') is-invalid @enderror" id="capacity" name="capacity" value="{{ old('capacity') }}" required min="1" autocomplete="off">
                     @error('capacity')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="col-md-4 mb-3">
+                    <label for="capacity" class="form-label">Do you have Local Area Network (LAN) Connecting Specify Computers? </label>
+                    <input type="checkbox"  id="capacity" name="LAN_availability">
+                    @error('LAN_availability')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="website" class="form-label">Website/Portal URL</label>
+                    <label for="website" class="form-label">School Website/Portal URL</label>
                     <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" value="{{ old('website') }}" placeholder="https://example.com" autocomplete="url">
                     @error('website')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -121,7 +123,7 @@
     </div>
 
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg mb-4">Register Centre</button>
+        <button type="submit" class="btn btn-primary btn-lg">Register School</button>
     </div>
 </form>
 @endsection

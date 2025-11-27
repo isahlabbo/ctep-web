@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        $profiles = ['ICT Centre', 'School', "Parent/Individual", 'Cafe Operator','Group of Community / Team'];
+        $profiles = ['ICT Centre', 'Secondary School', "Organization", 'Cafe Operator', "Individual"];
         foreach($profiles as $profile){
             \App\Models\Profile::create(['name'=>$profile]);
         }
