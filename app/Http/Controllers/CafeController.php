@@ -4,17 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\Cafe;
 
 class CafeController extends Controller
 {
-    public function index($profileId) {
+    public function index() {
+        return view('cafe.index');
+    }
+
+    public function updateStatus($cafeId , $status) {
+        $cafe = Cafe::find($cafeId);
+        if($cafe) {
+            $cafe->status = $status;
+            $cafe->save();
+            return redirect()->route('cafe.index')->with('success','cafe updated and status is '.$status);
+        } 
+        return redirect()->route('cafe.index')->with('error','cafe not found.');
+    }
+
+    public function view($profileId) {
         return view('cafe.index',['profile'=>Profile::find($profileId)]);
     }
     
-    public function create($profileId) {
-        return view('cafe.create',['profile'=>Profile::find($profileId)]);
-    }
-
     public function register(Request $request, $profileId) {
        
         $request->validate([

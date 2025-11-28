@@ -26,7 +26,13 @@
                 <td>{{ucwords($organization->status)}}</td>
                 <td>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                    @if($organization->status == 'pending')
+                    <a href="{{route('organization.updateStatus',[$organization->id, 'active'])}}" class="btn btn-sm btn-warning">Approve organization</a>
+                    @elseif($organization->status == 'active')
+                    <a href="{{route('organization.updateStatus',[$organization->id, 'inactive'])}}" class="btn btn-sm btn-secondary">Deactivate organization</a>
+                    @else
+                    <a href="{{route('organization.updateStatus',[$organization->id, 'active'])}}" class="btn btn-sm btn-success">Reactivate organization</a>
+                    @endif
                 </td>
             </tr>
             @endforeach

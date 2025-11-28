@@ -127,22 +127,11 @@
         @endif
 
         <div class="col-md-3 mb-4">
-            <a href="{{route(exam.index,[$agent->id])}}" class="text-decoration-none text-dark">
+            <a href="{{route('exam.index',[$agent->id])}}" class="text-decoration-none text-dark">
                 <div class="card shadow-sm h-100">
                     <div class="card-body d-flex flex-column align-items-center justify-content-center">
                         <i class="bi bi-journal-check" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
                         <h5 class="card-title" style="color: var(--ctep-dark-blue);">Exams</h5>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <a href="#" class="text-decoration-none text-dark">
-                <div class="card shadow-sm h-100">
-                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                        <i class="bi bi-book" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
-                        <h5 class="card-title" style="color: var(--ctep-dark-blue);">Subjects</h5>
                     </div>
                 </div>
             </a>

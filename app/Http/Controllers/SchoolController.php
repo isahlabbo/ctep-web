@@ -8,7 +8,21 @@ use App\Models\Profile;
 
 class SchoolController extends Controller
 {
-    public function index($profileId) {
+   public function index() {
+        return view('school.index');
+    }
+
+    public function updateStatus($schoolId , $status) {
+        $school = School::find($schoolId);
+        if($school) {
+            $school->status = $status;
+            $school->save();
+            return redirect()->route('school.index')->with('success','school updated and status is '.$status);
+        } 
+        return redirect()->route('school.index')->with('error','school not found.');
+    }
+
+    public function view($profileId) {
         return view('school.index',['profile'=>Profile::find($profileId)]);
     }
     

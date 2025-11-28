@@ -22,15 +22,17 @@ Route::middleware([])->group(function () {
     Route::name('school.')
     ->prefix('school/')
     ->group(function () {
-        Route::get('/{profileId}', [App\Http\Controllers\SchoolController::class, 'index'])->name('index');
+        Route::get('/', [App\Http\Controllers\SchoolController::class, 'index'])->name('index');
         Route::get('/{profileId}/create', [App\Http\Controllers\SchoolController::class, 'create'])->name('create');
+        Route::get('/{schoolId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
         Route::post('/{profileId}/register', [App\Http\Controllers\SchoolController::class, 'register'])->name('register');
     });
 
     Route::name('organization.')
     ->prefix('organization/')
     ->group(function () {
-        Route::get('/{profileId}', [App\Http\Controllers\OrganizationController::class, 'index'])->name('index');
+        Route::get('/{organizationId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/', [App\Http\Controllers\OrganizationController::class, 'index'])->name('index');
         Route::get('/{profileId}/create', [App\Http\Controllers\OrganizationController::class, 'create'])->name('create');
         Route::post('/{profileId}/register', [App\Http\Controllers\OrganizationController::class, 'register'])->name('register');
     });
@@ -38,7 +40,8 @@ Route::middleware([])->group(function () {
     Route::name('cafe.')
     ->prefix('cafe/')
     ->group(function () {
-        Route::get('/{profileId}', [App\Http\Controllers\CafeController::class, 'index'])->name('index');
+        Route::get('/{cafeId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/', [App\Http\Controllers\CafeController::class, 'index'])->name('index');
         Route::get('/{profileId}/create', [App\Http\Controllers\CafeController::class, 'create'])->name('create');
         Route::post('/{profileId}/register', [App\Http\Controllers\CafeController::class, 'register'])->name('register');
     });

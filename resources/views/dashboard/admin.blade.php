@@ -35,7 +35,7 @@
 </div>
 
 <div class="col-md-3 mb-4">
-    <a href="#" class="text-decoration-none text-dark">
+    <a href="{{route('school.index')}}" class="text-decoration-none text-dark">
         <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <i class="bi bi-building" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>

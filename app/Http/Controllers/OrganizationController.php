@@ -4,15 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\Organization;
 
 class OrganizationController extends Controller
 {
-    public function index($profileId) {
-        return view('organization.index',['profile'=>Profile::find($profileId)]);
+    public function index() {
+        return view('organization.index');
     }
-    
-    public function create($profileId) {
-        return view('organization.create',['profile'=>Profile::find($profileId)]);
+
+    public function updateStatus($organizationId , $status) {
+        $organization = Organization::find($organizationId);
+        if($organization) {
+            $organization->status = $status;
+            $organization->save();
+            return redirect()->route('organization.index')->with('success','organization updated and status is '.$status);
+        } 
+        return redirect()->route('organization.index')->with('error','organization not found.');
+    }
+
+    public function view($profileId) {
+        return view('organization.index',['profile'=>Profile::find($profileId)]);
     }
 
     public function register(Request $request, $profileId) {

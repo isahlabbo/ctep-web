@@ -5,7 +5,7 @@
     <ul class="dropdown-menu" aria-labelledby="agentsDropdown">
 
         <li>
-            <a class="dropdown-item" href="#schools-link">
+            <a class="dropdown-item" href="{{route('school.index')}}">
                 <i class="bi bi-building me-1"></i> Secondary Schools
             </a>
         </li>

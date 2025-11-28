@@ -16,7 +16,7 @@
             </tr>
         </thead>   
         <tbody>
-            @foreach($profile->cafes as $cafe)
+            @foreach(\App\Models\Cafe::all() as $cafe)
             <tr>
                 <td>{{$cafe->name}}</td>
                 <td>{{$cafe->address}}</td>
@@ -26,7 +26,13 @@
                 <td>{{ucwords($cafe->status)}}</td>
                 <td>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                    @if($cafe->status == 'pending')
+                    <a href="{{route('cafe.updateStatus',[$cafe->id, 'active'])}}" class="btn btn-sm btn-warning">Approve cafe</a>
+                    @elseif($cafe->status == 'active')
+                    <a href="{{route('cafe.updateStatus',[$cafe->id, 'inactive'])}}" class="btn btn-sm btn-secondary">Deactivate cafe</a>
+                    @else
+                    <a href="{{route('cafe.updateStatus',[$cafe->id, 'active'])}}" class="btn btn-sm btn-success">Reactivate cafe</a>
+                    @endif
                 </td>
             </tr>
             @endforeach

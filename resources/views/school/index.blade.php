@@ -16,7 +16,7 @@
             </tr>
         </thead>   
         <tbody>
-            @foreach($profile->schools as $school)
+            @foreach(\App\Models\School::all() as $school)
             <tr>
                 <td>{{$school->name}}</td>
                 <td>{{$school->address}}</td>
@@ -26,7 +26,13 @@
                 <td>{{ucwords($school->status)}}</td>
                 <td>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                    @if($school->status == 'pending')
+                    <a href="{{route('school.updateStatus',[$school->id, 'active'])}}" class="btn btn-sm btn-warning">Approve school</a>
+                    @elseif($school->status == 'active')
+                    <a href="{{route('school.updateStatus',[$school->id, 'inactive'])}}" class="btn btn-sm btn-secondary">Deactivate school</a>
+                    @else
+                    <a href="{{route('school.updateStatus',[$school->id, 'active'])}}" class="btn btn-sm btn-success">Reactivate school</a>
+                    @endif
                 </td>
             </tr>
             @endforeach
