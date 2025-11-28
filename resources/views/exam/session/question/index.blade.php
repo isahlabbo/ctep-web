@@ -12,7 +12,9 @@
                 <th>OPTION C</th>
                 <th>OPTION D</th>
                 <th>Answer</th>
-                <th><a href="" data-bs-toggle="modal" data-bs-target="#newQuestion" class="btn btn-sm btn-primary">New Question</a></th>
+                <th><a href="" data-bs-toggle="modal" data-bs-target="#newQuestion" class="btn btn-sm btn-primary">New Question</a>
+            <a href="{{route('exam.session.student.index',[$examSession->id])}}" class="btn btn-sm btn-secondary">Students</a>
+            </th>
             </tr>
             
         </thead>   
@@ -26,13 +28,13 @@
                 <td>{{$question->option_d}}</td>
                 <td>{{$question->correct_option}}</td>
                 <td>
-                    <a href="{{route('centre.exam.session.question.delete',[$question->id])}}" onclick="return confirm('Are you sure, you want to delete this question?')" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="{{route('exam.session.question.delete',[$question->id])}}" onclick="return confirm('Are you sure, you want to delete this question?')" class="btn btn-sm btn-danger">Delete</a>
                     <a href="" data-bs-toggle="modal" data-bs-target="#edit_{{$question->id}}" class="btn btn-sm btn-warning">Edit</a>
                 </td>
-                @include('centre.exam.session.question.edit')
+                @include('exam.session.question.edit')
             </tr>
             @endforeach
         </tbody>    
     </table>
-    @include('centre.exam.session.question.create')        
+    @include('exam.session.question.create')        
 @endsection

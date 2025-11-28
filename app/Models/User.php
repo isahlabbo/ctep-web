@@ -46,4 +46,30 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function profile() {
+        return $this->belongsTo(Profile::class);
+    }
+
+    function agent() {
+        switch ($this->profile_id) {
+            case '1':
+                $agent = $this->profile->centre;
+                break;
+            case '2':
+                $agent = $this->profile->school;
+                break;
+            case '3':
+                $agent = $this->profile->organization;
+                break;
+            case '4':
+                $agent = $this->profile->cafe;
+                break;
+            
+            default:
+                $agent = $agent = $this->profile->individual;
+                break;
+        }
+        return $agent;
+    }
 }

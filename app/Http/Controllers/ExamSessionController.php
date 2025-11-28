@@ -8,7 +8,7 @@ use App\Models\Exam;
 class ExamSessionController extends Controller
 {
     public function index($examId) {
-        return view('centre.exam.session.index',['exam'=>Exam::find($examId)]);
+        return view('exam.session.index',['exam'=>Exam::find($examId)]);
     }
     
     public function register(Request $request, $examId) {
@@ -29,7 +29,7 @@ class ExamSessionController extends Controller
             'end'=>$request->end_time,
             'title'=>$request->title,
         ]);
-        return redirect()->route('centre.exam.session.index',[$examId])->with('success','Exam Session registered successfully.');
+        return redirect()->route('exam.session.index',[$examId])->with('success','Exam Session registered successfully.');
     
     }
 

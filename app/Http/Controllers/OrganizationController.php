@@ -26,7 +26,7 @@ class OrganizationController extends Controller
             'contact_email'=>'nullable|email|max:255',
         ]);
         $profile = Profile::find($profileId);
-        $profile->organizations()->create([
+        $profile->organization()->create([
             'name'=>$request->name,
             'address'=>$request->address,
             'lga_id'=>$request->lga,
@@ -39,6 +39,6 @@ class OrganizationController extends Controller
             'contact_phone'=>$request->contact_phone,
             'contact_email'=>$request->contact_email,
         ]);
-        return redirect()->route('organization.index',[$profileId])->with('success','Organization registered successfully.');
+        return redirect()->route('home')->with('success','Organization registered successfully.');
     }
 }

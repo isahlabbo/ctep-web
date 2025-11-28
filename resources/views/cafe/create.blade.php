@@ -1,16 +1,16 @@
 
-<form method="POST" action="{{ route('school.register',[Auth::user()->profile_id]) }}">
+<form method="POST" action="{{ route('cafe.register',[Auth::user()->profile_id]) }}">
     @csrf
 
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary">
-            <h4 class="mb-0" style="color: white;">Please Complete Your School Registration</h4>
+            <h4 class="mb-0" style="color: white;">Please Complete Your Cafe Registration</h4>
         </div>
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label fw-bold">School Name <span class="text-danger">*</span></label>
+                    <label for="name" class="form-label fw-bold">Cafe Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required autocomplete="Centre-name" autofocus>
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -62,7 +62,7 @@
             <div class="row">
                 
                 <div class="col-md-4 mb-3">
-                    <label for="capacity" class="form-label fw-bold">Number of Computers in School <span class="text-danger">*</span></label>
+                    <label for="capacity" class="form-label fw-bold">Number of Computers in Cafe <span class="text-danger">*</span></label>
                     <input type="number" class="form-control @error('capacity') is-invalid @enderror" id="capacity" name="capacity" value="{{ old('capacity') }}" required min="1" autocomplete="off">
                     @error('capacity')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label for="website" class="form-label">School Website/Portal URL</label>
+                    <label for="website" class="form-label">Cafe Website/Portal URL</label>
                     <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website" value="{{ old('website') }}" placeholder="https://example.com" autocomplete="url">
                     @error('website')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -121,6 +121,6 @@
     </div>
 
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary btn-lg">Register School</button>
+        <button type="submit" class="btn btn-primary btn-lg">Register Cafe</button>
     </div>
 </form>

@@ -1,12 +1,10 @@
-@extends('layouts.app')
-@section('title','centre registration')
-@section('content')
+
 <form method="POST" action="{{ route('centre.register',[Auth::user()->profile_id]) }}">
     @csrf
 
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary">
-            <h4 class="mb-0" style="color: white;">Centre Details</h4>
+            <h4 class="mb-0" style="color: white;">Please Complete Your Centre Registration</h4>
         </div>
         <div class="card-body">
 
@@ -124,4 +122,3 @@
         <button type="submit" class="btn btn-primary btn-lg mb-4">Register Centre</button>
     </div>
 </form>
-@endsection

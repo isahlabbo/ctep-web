@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',$centre->name.' exams')
+@section('title',$agent->name.' exams')
 @section('content')
 
     <!-- display centre details -->
@@ -17,7 +17,7 @@
             
         </thead>   
         <tbody>
-            @foreach($centre->exams as $exam)
+            @foreach($agent->exams as $exam)
             <tr>
                 <td>{{$exam->title}}</td>
                 <td>{{$exam->examType->name}}</td>
@@ -26,7 +26,7 @@
                 <td>{{$exam->start_at}}</td>
                 <td>{{$exam->end_at}}</td>
                 <td>
-                    <a href="{{route('centre.exam.session.index',[$exam->id])}}" class="btn btn-sm btn-info">Exam Sessions</a>
+                    <a href="{{route('exam.session.index',[$exam->id])}}" class="btn btn-sm btn-info">Exam Sessions</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>
@@ -34,5 +34,5 @@
             @endforeach
         </tbody>    
     </table>
-    @include('centre.exam.create')        
+    @include('exam.create')        
 @endsection

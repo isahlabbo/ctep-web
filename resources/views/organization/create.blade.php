@@ -1,12 +1,10 @@
-@extends('layouts.app')
-@section('title','organization registration')
-@section('content')
+
 <form method="POST" action="{{ route('organization.register',[Auth::user()->profile_id]) }}">
     @csrf
 
     <div class="card shadow-sm mb-4">
         <div class="card-header bg-primary">
-            <h4 class="mb-0" style="color: white;">Organization Details</h4>
+            <h4 class="mb-0" style="color: white;">Please Complete Your Organization Registration</h4>
         </div>
         <div class="card-body">
 
@@ -126,4 +124,3 @@
         <button type="submit" class="btn btn-primary btn-lg">Register Organization</button>
     </div>
 </form>
-@endsection

@@ -6,7 +6,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('centre.exam.session.student.update', [$student->id])}}">
+                    <form method="POST" action="{{route('exam.session.student.update', [$student->id])}}">
                         @csrf
                         
                         <div class="mb-3">

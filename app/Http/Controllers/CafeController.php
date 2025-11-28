@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\School;
 use App\Models\Profile;
 
-class SchoolController extends Controller
+class CafeController extends Controller
 {
     public function index($profileId) {
-        return view('school.index',['profile'=>Profile::find($profileId)]);
+        return view('cafe.index',['profile'=>Profile::find($profileId)]);
     }
     
     public function create($profileId) {
-        return view('school.create',['profile'=>Profile::find($profileId)]);
+        return view('cafe.create',['profile'=>Profile::find($profileId)]);
     }
 
     public function register(Request $request, $profileId) {
@@ -27,7 +26,7 @@ class SchoolController extends Controller
             'contact_email'=>'nullable|email|max:255',
         ]);
         $profile = Profile::find($profileId);
-        $profile->school()->create([
+        $profile->cafe()->create([
             'name'=>$request->name,
             'address'=>$request->address,
             'lga_id'=>$request->lga,
@@ -40,6 +39,6 @@ class SchoolController extends Controller
             'contact_phone'=>$request->contact_phone,
             'contact_email'=>$request->contact_email,
         ]);
-        return redirect()->route('home')->with('success','School Registered Successfully.');
+        return redirect()->route('home')->with('success','cafe Registered Successfully.');
     }
 }

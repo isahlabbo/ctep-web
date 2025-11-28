@@ -2,11 +2,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newExam" style="color: var(--ctep-dark-blue);">Register New Exam</h5>
+                    <h5 class="modal-title" id="newExam" style="color: var(--ctep-dark-blue);">Register New {{$agent->name}} Exam</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{route('centre.exam.register', [$centre->id])}}">
+                    <form method="POST" action="{{route('exam.register', [$agent->id])}}">
                         @csrf
                         <div class="mb-3">
                             <label for="title" class="form-label">Exam Title</label>

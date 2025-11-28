@@ -11,7 +11,7 @@ class ExamSubjects extends Command
      *
      * @var string
      */
-    protected $signature = 'exam:subjects-gennerate';
+    protected $signature = 'exam:subjects-generate';
 
     /**
      * The console command description.

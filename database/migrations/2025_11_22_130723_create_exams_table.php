@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_type_id');
-            $table->foreignId('centre_id');
+            $table->foreignId('centre_id')->nullable();
             $table->foreignId('school_id')->nullable();
-            $table->foreignId('cafee_id')->nullable();
+            $table->foreignId('cafe_id')->nullable();
             $table->foreignId('organization_id')->nullable();
             $table->string('app_code');
             $table->string('start_at');

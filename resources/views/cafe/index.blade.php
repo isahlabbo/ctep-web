@@ -1,37 +1,35 @@
 @extends('layouts.app')
-@section('title','centres')
+@section('title','cafes')
 @section('content')
-    @php 
-    $centre = Auth::user()->profile->centre;
-    @endphp
-    <!-- display centre details -->
+
+    <!-- display cafe details -->
     <table class="table table-striped">    
         <thead>
             <tr>
-                <th>Centre Name</th>
-                <th>Centre Address</th>
+                <th>Cafe Name</th>
+                <th>Cafe Address</th>
                 <th>Contact Person</th>
                 <th>Contact Email</th>
                 <th>Contact Phone</th>
-                <th>Status</th>
+                <th>Staus</th>
                 <th></th>
             </tr>
         </thead>   
         <tbody>
-            
+            @foreach($profile->cafes as $cafe)
             <tr>
-                <td>{{$centre->name}}</td>
-                <td>{{$centre->address}}</td>
-                <td>{{$centre->contact_person}}</td>
-                <td>{{$centre->contact_email}}</td>
-                <td>{{$centre->contact_phone}}</td>
-                <td>{{ucwords($centre->status)}}</td>
+                <td>{{$cafe->name}}</td>
+                <td>{{$cafe->address}}</td>
+                <td>{{$cafe->contact_person}}</td>
+                <td>{{$cafe->contact_email}}</td>
+                <td>{{$cafe->contact_phone}}</td>
+                <td>{{ucwords($cafe->status)}}</td>
                 <td>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
-         
+            @endforeach
         </tbody>    
     </table>
                        

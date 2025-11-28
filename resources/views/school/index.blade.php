@@ -11,8 +11,8 @@
                 <th>Contact Person</th>
                 <th>Contact Email</th>
                 <th>Contact Phone</th>
-                <th>Exams</th>
-                <th><a href="{{route('school.create',[Auth::user()->profile_id])}}" class="btn btn-sm btn-primary">New School</a></th>
+                <th>Status</th>
+                <th></th>
             </tr>
         </thead>   
         <tbody>
@@ -23,9 +23,8 @@
                 <td>{{$school->contact_person}}</td>
                 <td>{{$school->contact_email}}</td>
                 <td>{{$school->contact_phone}}</td>
-                <td>{{count($school->exams)}}</td>
+                <td>{{ucwords($school->status)}}</td>
                 <td>
-                    <a href="" class="btn btn-sm btn-info">View Exams</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
                 </td>

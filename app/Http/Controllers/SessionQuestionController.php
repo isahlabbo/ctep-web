@@ -9,7 +9,7 @@ use App\Models\ExamSession;
 class SessionQuestionController extends Controller
 {
     public function index($examSessionId) {
-        return view('centre.exam.session.question.index',['examSession'=>ExamSession::find($examSessionId)]);
+        return view('exam.session.question.index',['examSession'=>ExamSession::find($examSessionId)]);
     }
     
     public function register(Request $request, $examSessionId) {
@@ -31,7 +31,7 @@ class SessionQuestionController extends Controller
             'option_d'=>$request->option_d,
             'correct_option'=>$request->answer,
         ]);
-        return redirect()->route('centre.exam.session.question.index',[$examSessionId])->with('success','Question registered successfully.');
+        return redirect()->route('exam.session.question.index',[$examSessionId])->with('success','Question registered successfully.');
     }
 
     public function update(Request $request, $questionId) {
@@ -52,13 +52,13 @@ class SessionQuestionController extends Controller
             'option_d'=>$request->option_d,
             'correct_option'=>$request->answer,
         ]);
-        return redirect()->route('centre.exam.session.question.index',[$question->exam_session_id])->with('success','Question updated successfully.');
+        return redirect()->route('exam.session.question.index',[$question->exam_session_id])->with('success','Question updated successfully.');
     }
     
     public function delete($questionId) {
         $question = \App\Models\Question::find($questionId);
         $examSessionId = $question->exam_session_id;
         $question->delete();
-        return redirect()->route('centre.exam.session.question.index',[$examSessionId])->with('success','Question deleted successfully.');
+        return redirect()->route('exam.session.question.index',[$examSessionId])->with('success','Question deleted successfully.');
     }
 }

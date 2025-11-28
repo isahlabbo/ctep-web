@@ -27,6 +27,9 @@
         }
     </style>
 </head>
+@php 
+    $agent = Auth::user()->agent();
+@endphp
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: var(--ctep-white);">
@@ -38,10 +41,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 
                 <ul class="navbar-nav ms-auto">
+                    
+    
+                @if($agent && $agent->status == 'active')
+
+                
+    
                     @if(Auth::user()->profile_id == 1)
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('centre.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My Centres
+                            <i class="bi bi-buildings me-1"></i> My Centre
                         </a>
                     </li>
                     @endif
@@ -49,7 +58,7 @@
                     @if(Auth::user()->profile_id == 2)
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('school.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My Schools
+                            <i class="bi bi-buildings me-1"></i> My School
                         </a>
                     </li>
                     @endif
@@ -61,9 +70,17 @@
                         </a>
                     </li>
                     @endif
+
+                    @if(Auth::user()->profile_id == 4)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('cafe.index',[Auth::user()->profile_id])}}">
+                            <i class="bi bi-buildings me-1"></i> My Cafe
+                        </a>
+                    </li>
+                    @endif
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="#my-exams-link">
+                        <a class="nav-link" href="{{route('exam.index',[$agent->id])}}">
                             <i class="bi bi-journal-check me-1"></i> My Exams
                         </a>
                     </li>
@@ -82,6 +99,7 @@
                             <i class="bi bi-patch-question me-1"></i> Questions
                         </a>
                     </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bi bi-box-arrow-right me-1"></i> Logout
@@ -95,6 +113,19 @@
 
     <main>
         <section id="welcome" class="container pt-4">
+            <!-- display a session message here -->
+             @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{session('success')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{session('error')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             @yield('content')
         </section>
 

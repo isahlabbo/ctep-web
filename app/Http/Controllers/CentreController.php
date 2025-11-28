@@ -26,7 +26,7 @@ class CentreController extends Controller
             'contact_email'=>'nullable|email|max:255',
         ]);
         $profile = Profile::find($profileId);
-        $profile->centres()->create([
+        $profile->centre()->create([
             'name'=>$request->name,
             'address'=>$request->address,
             'lga_id'=>$request->lga,
@@ -39,7 +39,7 @@ class CentreController extends Controller
             'contact_phone'=>$request->contact_phone,
             'contact_email'=>$request->contact_email,
         ]);
-        return redirect()->route('centre.index',[$profileId])->with('success','Centre registered successfully.');
+        return redirect()->route('home')->with('success','Centre registered successfully.');
     }
 
 }
