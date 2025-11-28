@@ -46,8 +46,9 @@ Route::middleware([])->group(function () {
     Route::name('centre.')
     ->prefix('centre/')
     ->group(function () {
-        Route::get('/{profileId}', [App\Http\Controllers\CentreController::class, 'index'])->name('index');
+        Route::get('/', [App\Http\Controllers\CentreController::class, 'index'])->name('index');
         Route::get('/{profileId}/create', [App\Http\Controllers\CentreController::class, 'create'])->name('create');
+        Route::get('/{centreId}/status/{status}', [App\Http\Controllers\CentreController::class, 'updateStatus'])->name('updateStatus');
         Route::post('/{profileId}/register', [App\Http\Controllers\CentreController::class, 'register'])->name('register');
     });    
     // centres exam routes

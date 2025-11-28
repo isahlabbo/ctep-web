@@ -27,9 +27,7 @@
         }
     </style>
 </head>
-@php 
-    $agent = Auth::user()->agent();
-@endphp
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: var(--ctep-white);">
@@ -41,65 +39,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 
                 <ul class="navbar-nav ms-auto">
-                    
-    
-                @if($agent && $agent->status == 'active')
-
+                    @if(Auth::user()->role == 'admin')
+                        @include('menu.admin')
+                    @else
+                        
+                        @include('menu.agent')
+                    @endif
                 
-    
-                    @if(Auth::user()->profile_id == 1)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('centre.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My Centre
-                        </a>
-                    </li>
-                    @endif
-
-                    @if(Auth::user()->profile_id == 2)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('school.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My School
-                        </a>
-                    </li>
-                    @endif
-
-                    @if(Auth::user()->profile_id == 3)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('organization.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My Organization
-                        </a>
-                    </li>
-                    @endif
-
-                    @if(Auth::user()->profile_id == 4)
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('cafe.index',[Auth::user()->profile_id])}}">
-                            <i class="bi bi-buildings me-1"></i> My Cafe
-                        </a>
-                    </li>
-                    @endif
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('exam.index',[$agent->id])}}">
-                            <i class="bi bi-journal-check me-1"></i> My Exams
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#subjects-link">
-                            <i class="bi bi-book me-1"></i> Subjects
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#exam-sessions-link">
-                            <i class="bi bi-calendar-event me-1"></i> Exam Sessions
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#questions-link">
-                            <i class="bi bi-patch-question me-1"></i> Questions
-                        </a>
-                    </li>
-                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="bi bi-box-arrow-right me-1"></i> Logout

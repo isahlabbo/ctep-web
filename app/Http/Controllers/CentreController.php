@@ -4,10 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\Centre;
 
 class CentreController extends Controller
 {
-    public function index($profileId) {
+    public function index() {
+        return view('centre.index');
+    }
+
+    public function updateStatus($centreId , $status) {
+        $centre = Centre::find($centreId);
+        if($centre) {
+            $centre->status = $status;
+            $centre->save();
+            return redirect()->route('centre.index')->with('success','Centre updated and status is '.$status);
+        } 
+        return redirect()->route('centre.index')->with('error','Centre not found.');
+    }
+
+    public function view($profileId) {
         return view('centre.index',['profile'=>Profile::find($profileId)]);
     }
     

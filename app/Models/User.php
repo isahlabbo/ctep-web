@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'profile_id',
+        'role',
         'password',
     ];
 
@@ -52,6 +53,7 @@ class User extends Authenticatable
     }
 
     function agent() {
+        $agent = null;
         switch ($this->profile_id) {
             case '1':
                 $agent = $this->profile->centre;
@@ -65,9 +67,12 @@ class User extends Authenticatable
             case '4':
                 $agent = $this->profile->cafe;
                 break;
+            case '5':
+                $agent = $agent = $this->profile->individual;
+                break;
             
             default:
-                $agent = $agent = $this->profile->individual;
+                
                 break;
         }
         return $agent;

@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('title','centres')
 @section('content')
-    @php 
-    $centre = Auth::user()->profile->centre;
-    @endphp
+    
     <!-- display centre details -->
     <table class="table table-striped">    
         <thead>
@@ -18,20 +16,26 @@
             </tr>
         </thead>   
         <tbody>
-            
-            <tr>
-                <td>{{$centre->name}}</td>
-                <td>{{$centre->address}}</td>
-                <td>{{$centre->contact_person}}</td>
-                <td>{{$centre->contact_email}}</td>
-                <td>{{$centre->contact_phone}}</td>
-                <td>{{ucwords($centre->status)}}</td>
-                <td>
-                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                </td>
-            </tr>
-         
+            @foreach(\App\Models\Centre::all() as $centre)
+                <tr>
+                    <td>{{$centre->name}}</td>
+                    <td>{{$centre->address}}</td>
+                    <td>{{$centre->contact_person}}</td>
+                    <td>{{$centre->contact_email}}</td>
+                    <td>{{$centre->contact_phone}}</td>
+                    <td>{{ucwords($centre->status)}}</td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        @if($centre->status == 'pending')
+                        <a href="{{route('centre.updateStatus',[$centre->id, 'active'])}}" class="btn btn-sm btn-warning">Approve Centre</a>
+                        @elseif($centre->status == 'active')
+                        <a href="{{route('centre.updateStatus',[$centre->id, 'inactive'])}}" class="btn btn-sm btn-secondary">Deactivate Centre</a>
+                        @else
+                        <a href="{{route('centre.updateStatus',[$centre->id, 'active'])}}" class="btn btn-sm btn-success">Reactivate Centre</a>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
         </tbody>    
     </table>
                        
