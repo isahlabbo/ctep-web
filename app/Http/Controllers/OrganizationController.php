@@ -17,9 +17,9 @@ class OrganizationController extends Controller
         if($organization) {
             $organization->status = $status;
             $organization->save();
-            return redirect()->route('organization.index')->with('success','organization updated and status is '.$status);
+            return redirect()->route('organization.index')->with('success','Organization updated and status is '.$status);
         } 
-        return redirect()->route('organization.index')->with('error','organization not found.');
+        return redirect()->route('organization.index')->with('error','Organization not found.');
     }
 
     public function view($profileId) {

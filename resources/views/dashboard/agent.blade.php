@@ -26,6 +26,10 @@
                                 <td>{{$agent->name ?? ''}}</td>
                             </tr>
                             <tr>
+                                <th width="60%">Agent Purpose:</th>
+                                <td>{{$agent->purpose ?? ''}}</td>
+                            </tr>
+                            <tr>
                                 <th>Agent Address:</th>
                                 <td>{{$agent->address ?? ''}}</td>
                             </tr>
@@ -40,6 +44,10 @@
                             <tr>
                                 <th>Agent Registration Number:</th>
                                 <td>{{$agent->registration_number ?? ''}}</td>
+                            </tr>
+                            <tr>
+                                <th>Agent Mode:</th>
+                                <td>{{$agent->mode ?? ''}}</td>
                             </tr>
                             <tr>
                                 <th>Agent Established Date:</th>

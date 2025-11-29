@@ -59,7 +59,7 @@
 
 
 <div class="col-md-3 mb-4">
-    <a href="#" class="text-decoration-none text-dark">
+    <a href="{{route('organization.index')}}" class="text-decoration-none text-dark">
         <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <i class="bi bi-diagram-3" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
@@ -71,7 +71,7 @@
 
 
 <div class="col-md-3 mb-4">
-    <a href="#" class="text-decoration-none text-dark">
+    <a href="{{route('cafe.index')}}" class="text-decoration-none text-dark">
         <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <i class="bi bi-wifi" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>
@@ -83,7 +83,7 @@
 
 
 <div class="col-md-3 mb-4">
-    <a href="#" class="text-decoration-none text-dark">
+    <a href="{{route('individual.index')}}" class="text-decoration-none text-dark">
         <div class="card shadow-sm h-100">
             <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <i class="bi bi-person-badge" style="font-size: 3rem; color: var(--ctep-dark-blue);"></i>

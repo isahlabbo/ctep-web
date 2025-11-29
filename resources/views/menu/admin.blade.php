@@ -17,19 +17,19 @@
         </li>
 
         <li>
-            <a class="dropdown-item" href="#organizations-link">
+            <a class="dropdown-item" href="{{route('organization.index')}}">
                 <i class="bi bi-diagram-3 me-1"></i> Organizations
             </a>
         </li>
 
         <li>
-            <a class="dropdown-item" href="#cafes-link">
+            <a class="dropdown-item" href="{{route('cafe.index')}}">
                 <i class="bi bi-wifi me-1"></i> Internet Cafes
             </a>
         </li>
 
         <li>
-            <a class="dropdown-item" href="#individuals-link">
+            <a class="dropdown-item" href="route('individual.index')">
                 <i class="bi bi-person-badge me-1"></i> Individuals
             </a>
         </li>

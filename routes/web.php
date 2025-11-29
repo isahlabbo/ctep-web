@@ -15,43 +15,47 @@ Route::prefix('ajax')
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware([])->group(function () {
+Route::middleware(['auth'])->group(function () {
     
     Route::name('school.')
     ->prefix('school/')
     ->group(function () {
-        Route::get('/', [App\Http\Controllers\SchoolController::class, 'index'])->name('index');
-        Route::get('/{profileId}/create', [App\Http\Controllers\SchoolController::class, 'create'])->name('create');
-        Route::get('/{schoolId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/', [App\Http\Controllers\SchoolController::class, 'index'])->name('index')->middleware('admin');
+        Route::get('/{schoolId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus')->middleware('admin');
         Route::post('/{profileId}/register', [App\Http\Controllers\SchoolController::class, 'register'])->name('register');
     });
 
     Route::name('organization.')
     ->prefix('organization/')
     ->group(function () {
-        Route::get('/{organizationId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
-        Route::get('/', [App\Http\Controllers\OrganizationController::class, 'index'])->name('index');
-        Route::get('/{profileId}/create', [App\Http\Controllers\OrganizationController::class, 'create'])->name('create');
+        Route::get('/{organizationId}/status/{status}', [App\Http\Controllers\OrganizationController::class, 'updateStatus'])->name('updateStatus')->middleware('admin');
+        Route::get('/', [App\Http\Controllers\OrganizationController::class, 'index'])->name('index')->middleware('admin');
         Route::post('/{profileId}/register', [App\Http\Controllers\OrganizationController::class, 'register'])->name('register');
+    });
+
+    Route::name('individual.')
+    ->prefix('individual/')
+    ->group(function () {
+        Route::get('/{individualId}/status/{status}', [App\Http\Controllers\IndividualController::class, 'updateStatus'])->name('updateStatus')->middleware('admin');
+        Route::get('/', [App\Http\Controllers\IndividualController::class, 'index'])->name('index')->middleware('admin');
+        Route::post('/{profileId}/register', [App\Http\Controllers\IndividualController::class, 'register'])->name('register');
     });
 
     Route::name('cafe.')
     ->prefix('cafe/')
     ->group(function () {
-        Route::get('/{cafeId}/status/{status}', [App\Http\Controllers\SchoolController::class, 'updateStatus'])->name('updateStatus');
-        Route::get('/', [App\Http\Controllers\CafeController::class, 'index'])->name('index');
-        Route::get('/{profileId}/create', [App\Http\Controllers\CafeController::class, 'create'])->name('create');
+        Route::get('/{cafeId}/status/{status}', [App\Http\Controllers\CafeController::class, 'updateStatus'])->name('updateStatus')->middleware('admin');
+        Route::get('/', [App\Http\Controllers\CafeController::class, 'index'])->name('index')->middleware('admin');
         Route::post('/{profileId}/register', [App\Http\Controllers\CafeController::class, 'register'])->name('register');
     });
 
     Route::name('centre.')
     ->prefix('centre/')
     ->group(function () {
-        Route::get('/', [App\Http\Controllers\CentreController::class, 'index'])->name('index');
-        Route::get('/{profileId}/create', [App\Http\Controllers\CentreController::class, 'create'])->name('create');
-        Route::get('/{centreId}/status/{status}', [App\Http\Controllers\CentreController::class, 'updateStatus'])->name('updateStatus');
+        Route::get('/', [App\Http\Controllers\CentreController::class, 'index'])->name('index')->middleware('admin');
+        Route::get('/{centreId}/status/{status}', [App\Http\Controllers\CentreController::class, 'updateStatus'])->name('updateStatus')->middleware('admin');
         Route::post('/{profileId}/register', [App\Http\Controllers\CentreController::class, 'register'])->name('register');
     });    
     // centres exam routes

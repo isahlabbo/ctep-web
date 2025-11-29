@@ -21,6 +21,7 @@ class Profile extends BaseModel
     public function cafe() {
         return $this->hasOne(Cafe::class);
     }
+    
     public function individual() {
         return $this->hasOne(Individual::class);
     }

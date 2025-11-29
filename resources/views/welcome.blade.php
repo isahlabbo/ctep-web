@@ -45,12 +45,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#supports">
-                            <i class="bi bi-lightbulb me-1"></i> Support
+                            <i class="bi bi-cash-coin me-1"></i> Support
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#clients">
-                            <i class="bi bi-lightbulb me-1"></i> Clients
+                            <i class="bi bi-person-lines-fill me-1"></i> Clients
                         </a>
                     </li>
                     <li class="nav-item">

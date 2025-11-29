@@ -16,7 +16,7 @@
             </tr>
         </thead>   
         <tbody>
-            @foreach($profile->organizations as $organization)
+            @foreach(\App\Models\Organization::all() as $organization)
             <tr>
                 <td>{{$organization->name}}</td>
                 <td>{{$organization->address}}</td>
