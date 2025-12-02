@@ -63,7 +63,11 @@ Route::middleware(['auth'])->group(function () {
     ->prefix('exam/')
     ->group(function () {
         Route::get('/{agentId}', [App\Http\Controllers\ExamController::class, 'index'])->name('index');
+        Route::get('/{examId}/compile', [App\Http\Controllers\ExamController::class, 'compile'])->name('compile');
         Route::post('/{agentId}/register', [App\Http\Controllers\ExamController::class, 'register'])->name('register');
+        Route::post('/{examId}/compile', [App\Http\Controllers\BuildController::class, 'startCompile'])->name('build.start');
+        Route::get('/builds/{buildId}/status', [App\Http\Controllers\BuildController::class, 'status'])->name('build.status');
+        Route::get('/builds/{buildId}/download/{filename}', [App\Http\Controllers\BuildController::class, 'downloadArtifact'])->name('build.download');
         
         // centres exam routes
         Route::name('session.')

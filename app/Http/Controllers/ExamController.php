@@ -8,6 +8,7 @@ use App\Models\Organization;
 use App\Models\School;
 use App\Models\Cafe;
 use App\Models\Individual;
+use App\Models\Exam;
 use Auth;
 
 class ExamController extends Controller
@@ -19,6 +20,10 @@ class ExamController extends Controller
     
     public function create($profileId) {
         return view('centre.create',['profile'=>Profile::find($profileId)]);
+    }
+
+    public function compile($examId) {
+        return view('exam.compile',['exam'=>Exam::find($examId)]);
     }
 
     public function register(Request $request, $agentId) {

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_session_id');
+            $table->foreignId('exam_session_subject_id');
             $table->text('question_text');
             $table->string('option_a');
             $table->string('option_b');

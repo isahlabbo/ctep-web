@@ -12,7 +12,10 @@
                 <th>Sessions</th>
                 <th>Start Date</th>
                 <th>End Date</th>
-                <th><a href="" data-bs-toggle="modal" data-bs-target="#newExam" class="btn btn-sm btn-primary">New Exam</a></th>
+                <th>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#newExam" class="btn btn-sm btn-primary">New Exam</a>
+                
+                </th>
             </tr>
             
         </thead>   
@@ -29,6 +32,7 @@
                     <a href="{{route('exam.session.index',[$exam->id])}}" class="btn btn-sm btn-info">Exam Sessions</a>
                     <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{route('exam.compile',[$exam->id])}}" class="btn btn-sm btn-info">Compile Exam</a>
                 </td>
             </tr>
             @endforeach
