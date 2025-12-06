@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('builds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('exam_id');
-            $table->string('build_id')->nullable(); // random id for our record
-            $table->string('workflow_run_id')->nullable(); // optional
-            $table->string('status')->default('queued'); // queued, running, success, failed
+            $table->string('build_id')->nullable(); 
+            $table->string('workflow_run_id')->nullable(); 
+            $table->string('status')->default('queued');
             $table->text('log')->nullable();
-            $table->json('artifacts')->nullable(); // array of artifact file names
-            $table->string('sqlite_local_path')->nullable()->after('status');
+            $table->json('artifacts')->nullable();
+            $table->string('sqlite_local_path')->nullable();
             $table->timestamps();
         });
     }
