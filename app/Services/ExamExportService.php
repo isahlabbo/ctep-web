@@ -98,96 +98,94 @@ class ExamExportService
 
         // ---------- refactored export snippet (use inside createSqliteForExam) ----------
 
-// Helper to insert rows into sqlite
-$insertRow = function(string $table, array $cols, $row) use ($sqlitePdo) {
-    $placeholders = implode(',', array_fill(0, count($cols), '?'));
-    $colList = implode(',', array_map(function($c){ return "`{$c}`"; }, $cols));
-    $stmt = $sqlitePdo->prepare("INSERT INTO {$table} ({$colList}) VALUES ({$placeholders})");
-    $values = [];
-    foreach ($cols as $c) {
-        // cast object to array-safe access
-        $values[] = is_object($row) ? ($row->$c ?? null) : ($row[$c] ?? null);
-    }
-    $stmt->execute($values);
-};
+        // Helper to insert rows into sqlite
+        $insertRow = function(string $table, array $cols, $row) use ($sqlitePdo) {
+            $placeholders = implode(',', array_fill(0, count($cols), '?'));
+            $colList = implode(',', array_map(function($c){ return "`{$c}`"; }, $cols));
+            $stmt = $sqlitePdo->prepare("INSERT INTO {$table} ({$colList}) VALUES ({$placeholders})");
+            $values = [];
+            foreach ($cols as $c) {
+                // cast object to array-safe access
+                $values[] = is_object($row) ? ($row->$c ?? null) : ($row[$c] ?? null);
+            }
+            $stmt->execute($values);
+        };
 
-// 1) exam row
-$examRow = DB::table('exams')->where('id', $examId)->first();
-if (!$examRow) throw new Exception("Exam {$examId} not found");
-$insertRow('exams', array_keys((array)$examRow), $examRow);
+        // 1) exam row
+        $examRow = DB::table('exams')->where('id', $examId)->first();
+        if (!$examRow) throw new Exception("Exam {$examId} not found");
+        $insertRow('exams', array_keys((array)$examRow), $examRow);
 
-// 2) exam_sessions for this exam (there may be multiple sessions)
-$sessionIds = [];
-DB::table('exam_sessions')->where('exam_id', $examId)->orderBy('id')->chunk(500, function($sessions) use ($insertRow, &$sessionIds) {
-    foreach ($sessions as $s) {
-        $insertRow('exam_sessions', array_keys((array)$s), $s);
-        $sessionIds[] = $s->id;
-    }
-});
-
-// if no sessions found, sessionIds will be empty
-if (!empty($sessionIds)) {
-    // 3) students (your table name) in those sessions
-    DB::table('students')
-        ->whereIn('exam_session_id', $sessionIds)
-        ->orderBy('id')
-        ->chunk(500, function($students) use ($insertRow) {
-            foreach ($students as $st) {
-                $insertRow('students', array_keys((array)$st), $st);
+        // 2) exam_sessions for this exam (there may be multiple sessions)
+        $sessionIds = [];
+        DB::table('exam_sessions')->where('exam_id', $examId)->orderBy('id')->chunk(500, function($sessions) use ($insertRow, &$sessionIds) {
+            foreach ($sessions as $s) {
+                $insertRow('exam_sessions', array_keys((array)$s), $s);
+                $sessionIds[] = $s->id;
             }
         });
 
-    // 4) questions in those sessions
-    $questionIds = [];
-    DB::table('questions')
-        ->whereIn('exam_session_id', $sessionIds)
-        ->orderBy('id')
-        ->chunk(500, function($questions) use ($insertRow, &$questionIds) {
-            foreach ($questions as $q) {
-                $insertRow('questions', array_keys((array)$q), $q);
-                $questionIds[] = $q->id;
-            }
-        });
-
-    // 5) candidate_answers (if table exists) -> fetch by question_id or student_id
-    try {
-        // prefer filtering by question_id if we have them
-        if (!empty($questionIds)) {
-            DB::table('candidate_answers')
-                ->whereIn('question_id', $questionIds)
+        // if no sessions found, sessionIds will be empty
+        if (!empty($sessionIds)) {
+            // 3) students (your table name) in those sessions
+            DB::table('students')
+                ->whereIn('exam_session_id', $sessionIds)
                 ->orderBy('id')
-                ->chunk(500, function($answers) use ($insertRow) {
-                    foreach ($answers as $a) {
-                        $insertRow('candidate_answers', array_keys((array)$a), $a);
+                ->chunk(500, function($students) use ($insertRow) {
+                    foreach ($students as $st) {
+                        $insertRow('students', array_keys((array)$st), $st);
                     }
                 });
-        } else {
-            // fallback: select any answers for students in these sessions (if candidate_answers has candidate_id)
-            // gather student ids
-            $studentIds = DB::table('students')->whereIn('exam_session_id', $sessionIds)->pluck('id')->toArray();
-            if (!empty($studentIds)) {
-                DB::table('candidate_answers')
-                    ->whereIn('candidate_id', $studentIds)
-                    ->orderBy('id')
-                    ->chunk(500, function($answers) use ($insertRow) {
-                        foreach ($answers as $a) {
-                            $insertRow('candidate_answers', array_keys((array)$a), $a);
-                        }
-                    });
+
+            // 4) questions in those sessions
+            $questionIds = [];
+            DB::table('questions')
+                ->whereIn('exam_session_id', $sessionIds)
+                ->orderBy('id')
+                ->chunk(500, function($questions) use ($insertRow, &$questionIds) {
+                    foreach ($questions as $q) {
+                        $insertRow('questions', array_keys((array)$q), $q);
+                        $questionIds[] = $q->id;
+                    }
+                });
+
+            // 5) candidate_answers (if table exists) -> fetch by question_id or student_id
+            try {
+                // prefer filtering by question_id if we have them
+                if (!empty($questionIds)) {
+                    DB::table('candidate_answers')
+                        ->whereIn('question_id', $questionIds)
+                        ->orderBy('id')
+                        ->chunk(500, function($answers) use ($insertRow) {
+                            foreach ($answers as $a) {
+                                $insertRow('candidate_answers', array_keys((array)$a), $a);
+                            }
+                        });
+                } else {
+                    // fallback: select any answers for students in these sessions (if candidate_answers has candidate_id)
+                    // gather student ids
+                    $studentIds = DB::table('students')->whereIn('exam_session_id', $sessionIds)->pluck('id')->toArray();
+                    if (!empty($studentIds)) {
+                        DB::table('candidate_answers')
+                            ->whereIn('candidate_id', $studentIds)
+                            ->orderBy('id')
+                            ->chunk(500, function($answers) use ($insertRow) {
+                                foreach ($answers as $a) {
+                                    $insertRow('candidate_answers', array_keys((array)$a), $a);
+                                }
+                            });
+                    }
+                }
+            } catch (\Throwable $e) {
+                // candidate_answers table might not exist or have different column names
+                // log and continue
+                // \Log::warning('candidate_answers export skipped: '.$e->getMessage());
             }
         }
-    } catch (\Throwable $e) {
-        // candidate_answers table might not exist or have different column names
-        // log and continue
-        // \Log::warning('candidate_answers export skipped: '.$e->getMessage());
-    }
-}
 
-// close sqlite connection (if needed)
-$sqlitePdo = null;
-return $path;
-
-
+        // close sqlite connection (if needed)
+        $sqlitePdo = null;
+        return $path;
 
     }
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('status')->default('queued'); // queued, running, success, failed
             $table->text('log')->nullable();
             $table->json('artifacts')->nullable(); // array of artifact file names
-            $table->string('sqlite_s3_path')->nullable();
+            $table->string('sqlite_local_path')->nullable()->after('status');
             $table->timestamps();
         });
     }
